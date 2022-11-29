@@ -1,0 +1,75 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+  
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white">Hello User</h1>
+        <button  class="nav-link-inner--text" (click)="onClick()" >Logout</button>
+        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+
+        <!-- <a href="#!" class="btn btn-info"></a> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-8 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Create entry</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form #wordForm="ngForm" (ngSubmit)="onWordCreate(wordForm.value)">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Word:</label>
+                      <input type="text" name ="word" class="form-control form-control-alternative" placeholder="Word..." ngModel>                    
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Definition: </label>
+                    <input type="text"  name ="definitions" class="form-control form-control-alternative" placeholder="Definition..." ngModel>
+                  </div>
+                </div>
+              </div>
+              <input type="submit" value ="Add words" class="btn btn-sm btn-primary">
+            </div>
+          </form>
+            <hr class="my-4" />
+
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div  *ngFor= 'let word of success' >
+                      <div *ngIf="word.Success">
+                        <p class="form-control-label">{{word.Success}}</p>
+                      </div>
+                    </div>
+                    <div  *ngFor= 'let word of error1' >
+                      <div *ngIf="getError()">  
+                          <p class="form-control-label">Error: {{word.Error}}</p>
+                      </div>                 
+                  </div>
+                </div>
+              </div>
+            </div>          
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>

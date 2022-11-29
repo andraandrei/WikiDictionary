@@ -1,0 +1,99 @@
+<div class="main-content">
+  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+    <div class="container px-4">
+      <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+         aria-controls="sidenav-collapse-main">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+        <!-- Collapse header -->
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a routerLinkActive="active" [routerLink]="['/dashboard']">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed" >
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Navbar items -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
+              <i class="ni ni-planet"></i>
+              <span class="nav-link-inner--text">Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/register']">
+              <i class="ni ni-circle-08"></i>
+              <span class="nav-link-inner--text">Register</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/login']">
+              <i class="ni ni-key-25"></i>
+              <span class="nav-link-inner--text">Login</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="header bg-gradient-danger py-7 py-lg-8">
+    <div class="container">
+      <div class="header-body text-center mb-7">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-6">
+            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">      
+              <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Search" type="text"  [(ngModel)]="word" (focus)="focus = true"
+                  (blur)="focus = false" >      
+                </div>
+              </div>
+              <button  type="submit" (click) ="inputValue(word)">Submit</button>                     
+            </form>
+          </div>   
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <p></p>
+                  <div  *ngFor= 'let word of wordData' >
+                    <div *ngIf="!getError()"> 
+                        <p class="text-white mt-0 mb-5">Word: {{word.word}}</p>
+                        <hr class="my-4" />
+                        <p class="text-white mt-0 mb-5">Definition: {{word.definition}}</p>
+                    </div>
+                    <div *ngIf="getError()"> 
+                        <hr class="my-4" />     
+                        <p class="text-white mt-0 mb-5">Error: {{word.error}}</p>
+                    </div>
+                  </div>
+                </div  >               
+              </div>      
+            </div>    
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="separator separator-bottom separator-skew zindex-100">
+  <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+  </svg>
+</div>
+
+
+
+    
