@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       console.log(response);
       this.router.navigate(['/login']);
     })
-    .catch(error => console.log(error));
+    .catch(error =>  alert("No se ha podido hacer el registro correctamente. Error: " + error));
     
 }
 
@@ -47,7 +47,7 @@ onClick() {
       console.log(response);
       this.router.navigate(['/login']);
     })
-    .catch(error => console.log(error))
+    .catch(error =>  alert("No se ha podido hacer el registro correctamente. Error: " + error))
 }
 
 onCreate(loginForm:{ inputword:string, inputdef:string }){

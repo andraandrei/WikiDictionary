@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   siError:boolean=false;
   error1: any
   url: string = "http://localhost:8017/setWord";
-
+  user:string;
   constructor(
     private userService: UsersService,
     private router: Router,private http: HttpClient
@@ -87,6 +87,8 @@ export class UserProfileComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
+  
+   
   @Input() word // Capitalize Input!
 
 

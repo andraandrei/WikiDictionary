@@ -4,6 +4,9 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { getAuth } from "firebase/auth";
+import { UsersService } from 'src/app/users.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +17,8 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router, private http: HttpClient) {
+  constructor(location: Location,  private element: ElementRef, 
+    private router: Router, private http: HttpClient, private userService: UsersService) {
     this.location = location;
   }
 
@@ -26,6 +30,9 @@ export class NavbarComponent implements OnInit {
   word1: any
   siError:boolean=false;
   error1: any
+
+  logged: boolean;
+  formReg: FormsModule
 
 
   inputValue(value){
@@ -52,6 +59,8 @@ export class NavbarComponent implements OnInit {
 
 
   getError():boolean {
+
+   
     
     if(this.error1 !== undefined){
       return true;
@@ -72,6 +81,8 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });
+
+   
   }
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -99,6 +110,27 @@ export class NavbarComponent implements OnInit {
     body.classList.remove("bg-default");
   }
 
+  isLoggedIn(){
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+   if(user)
+   {
+    this.logged = true;
+   }
+
+   return true;
+   console.log(user)
+    
+  }
+
+  logout(){
+    this.userService.logout()
+      .then(() => {
+        this.router.navigate(['/dashboard']);
+      })
+      .catch(error => console.log(error));
+  }
   @Input() word // Capitalize Input!
 }
 

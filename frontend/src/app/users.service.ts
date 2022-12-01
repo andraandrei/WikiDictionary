@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
-  constructor(private auth:Auth) { }
+  isLoggedin: boolean = false;
+  constructor(private auth:Auth, private router: Router) { }
 
   registro({email,password}: any){
 
@@ -42,6 +43,24 @@ export class UsersService {
   }
 
   logout() {
-    return signOut(this.auth);
+
+    return signOut(this.auth)
+    .then(response => {
+      console.log(response);
+      this.router.navigate(['/dashboard']);
+    })
+    .catch(error =>  alert("Ha ocurrido un error. Error: " + error));
+    
+  }
+
+  isLoggedIn() {
+
+    if (JSON.parse(localStorage.getItem('currentUser')).auth_token == null) {
+      this.isLoggedin = false;
+      return this.isLoggedin;
+    }
+    else {
+      return true;
+    }
   }
 }

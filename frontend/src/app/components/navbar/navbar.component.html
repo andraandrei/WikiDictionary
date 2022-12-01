@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
         <!-- Collapse header -->
-        <div class="navbar-collapse-header d-md-none">
+        <!-- <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
               <a routerLinkActive="active" [routerLink]="['/dashboard']">
@@ -20,28 +20,46 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- Navbar items -->
+        <!-- <ul class="navbar-nav ml-auto"> -->
+<!--           
+        </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashbar']">
               <i class="ni ni-planet"></i>
               <span class="nav-link-inner--text">Home</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="isLoggedIn()$" class="nav-item" >
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/register']">
               <i class="ni ni-circle-08"></i>
               <span class="nav-link-inner--text">Register</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="isLoggedIn()$ " class="nav-item" >
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/login']">
               <i class="ni ni-key-25"></i>
               <span class="nav-link-inner--text">Login</span>
             </a>
+          </li> -->
+          <!-- <li *ngIf="isLoggedIn()$ " class="nav-item" >
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
+              <i class="ni ni-key-25"></i>
+              <span class="nav-link-inner--text">Logout</span>
+            </a>
+          </li> -->
+          
+         
+          <!-- <li *ngIf="isLoggedIn()$" class="nav-item" >
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
+              <i class="ni ni-key-25"></i>
+              <span class="nav-link-inner--text">Logout</span>
+            </a>
           </li>
-        </ul>
+          
+        </ul> -->
       </div>
     </div>
   </nav>
