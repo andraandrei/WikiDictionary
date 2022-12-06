@@ -27,7 +27,7 @@
           </div>
         </div>
         <!-- Navbar items -->
-        <ul class="navbar-nav ml-auto" *ngIf="!isLoggeddIn()$">
+        <ul class="navbar-nav ml-auto" *ngIf="!isLoggeddIn()$" ngAfterViewInit>
           <li  class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
               <i class="ni ni-planet" ></i>
@@ -59,13 +59,25 @@
               <i class="ni ni-circle-08" ></i>
               <span class="nav-link-inner--text">Profile</span>
             </a>
-          </li>      
+          </li>
           <li  class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/maps']">
               <i class="ni ni-email-83" ></i>
               <span class="nav-link-inner--text">Add Word</span>
             </a>
           </li>
+          <li  class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/update']">
+              <i class="ni ni-email-83" ></i>
+              <span class="nav-link-inner--text">Update Word</span>
+            </a>
+          </li>
+          <li  class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/icons']">
+              <i class="ni ni-email-83" ></i>
+              <span class="nav-link-inner--text">Delete Word</span>
+            </a>
+          </li>                
           <li   class="nav-item">
             <a class="nav-link nav-link-icon" >
               <i class="ni ni-lock-circle-open" ></i>

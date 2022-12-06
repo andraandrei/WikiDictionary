@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { UsersService } from 'src/app/users.service';
 
 @Component({
-  selector: 'app-tables',
+  selector: 'app-update',
   templateUrl: './tables.component.html',
   styleUrls: ['./tables.component.scss','./nicepage.css']
 })
@@ -37,11 +37,11 @@ export class TablesComponent implements OnInit {
     const auth = getAuth();
     const user = auth.currentUser;
     if(this.isLoggeddIn()==true){
-      this.router.navigate(['/tables']);
+      this.router.navigate(['/update']);
     } 
     else if (this.isLoggeddIn()==false){ 
       this.router.navigate(['/login']);
-      console.log("error, no ha entrado al perifl de ysyari");
+      console.log("error, no ha entrado al perifl");
       alert("No se ha podido hacer el log-in correctamente");
     }
   }
@@ -51,18 +51,16 @@ export class TablesComponent implements OnInit {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
+    
   };
 
-  onWordCreate(words:{word:string, definitions:string[]}){
-  
-    console.log(words);
+  onWordUpdate(data){
+    
+    console.log(data);
 
     let body = "";
-    body = "{ \"word\": \""+words.word+"\",\"definitions\": [\""+words.definitions+"\"]}";
-    this.http.put(this.url,body,this.httpOptions).subscribe((response: any) => {
-
-      
-
+    body = "{ \"word\": \""+data.pWord+"\",\"definitions\": [\""+data.pDefinition+"\"]}";   
+    this.http.put(this.url, body,this.httpOptions).subscribe((response: any) => { 
       if(response.Success != null)
       {
         console.log("Success")

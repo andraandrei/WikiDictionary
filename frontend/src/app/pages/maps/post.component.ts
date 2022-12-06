@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Auth, getAuth, getIdToken } from '@angular/fire/auth';
-import { FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/users.service';
 declare const google: any;
@@ -22,7 +22,7 @@ export class PostComponent implements OnInit {
   siError:boolean=false;
   error1: any
   url: string = "http://localhost:8017/setWord";
-  
+  @ViewChild('wordForm') form:NgForm;
   
   constructor(
     private userService: UsersService,
@@ -36,6 +36,10 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.noLogueado()
+  }
+
+  noLogueado(){
     const auth = getAuth();
     const user = auth.currentUser;
     if(this.isLoggeddIn()==true){
@@ -43,7 +47,7 @@ export class PostComponent implements OnInit {
     } 
     else if (this.isLoggeddIn()==false){ 
       this.router.navigate(['/login']);
-      console.log("error, no ha entrado al perifl de ysyari");
+      console.log("error, no ha entrado al perifl ");
       alert("No se ha podido hacer el log-in correctamente");
     }
   }
@@ -55,16 +59,24 @@ export class PostComponent implements OnInit {
     }),
   };
 
-  onWordCreate(words:{word:string, definitions:string[]}){
-  
-    console.log(words);
+    formEdit(){
+      this.form.setValue({
+        pWord:'',
+        pDefinition:''
+      });
+    }
+  onWordCreate(data){
+
+
+    console.log(data)
+
 
     let body = "";
-    body = "{ \"word\": \""+words.word+"\",\"definitions\": [\""+words.definitions+"\"]}";
+    body = "{ \"word\": \""+data.pWord+"\",\"definitions\": [\""+data.pDefinition+"\"]}";
     this.http.post(this.url,body,this.httpOptions).subscribe((response: any) => {
 
-      
-
+      console.log(body)
+      console.log(response)
       if(response.Success != null)
       {
         console.log("Success")
