@@ -10,7 +10,9 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>backend-dictionary</artifactId>
+	<packaging>jar</packaging>
 
+	
 	<version>0.0.1-SNAPSHOT</version>
 	<name>backend-dictionary</name>
 	<description>Wiki Dictionary Backend</description>
@@ -19,26 +21,7 @@
 	</properties>
 	<dependencies>
 
-		<dependency>
-			<groupId>studio.crud.feature</groupId>
-			<artifactId>jpa</artifactId>
-			<version>0.3.0</version>
-		</dependency>
 
-
-		<dependency>
-			<groupId>com.cosium.spring.data</groupId>
-			<artifactId>spring-data-jpa-entity-graph-parent</artifactId>
-			<version>3.0.0</version>
-			<type>pom</type>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>3.0.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -79,12 +62,6 @@
 			<artifactId>api-common</artifactId>
 			<version>2.2.2</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
-			<version>8.0.31</version>
-		</dependency>
 
 		
 
@@ -97,6 +74,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>libs/</classpathPrefix>
+							<mainClass>
+								com.example.backenddictionary.DictionaryApplication
+							</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
