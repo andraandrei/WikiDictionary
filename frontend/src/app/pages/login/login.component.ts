@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss','./nicepage.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  isLoggedIn : Observable<boolean>;
+  isLoggedIn : boolean;
   formLogin: FormGroup;
   constructor(
     private userService: UsersService,
@@ -39,7 +39,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.userService.loginWithGoogle()
       .then(response => {
         console.log(response);
-        this.router.navigate(['/user-profile']);
+        if(this.isLoggeddIn()==true){
+          this.router.navigate(['/user-profile']);
+        } 
+        else if (this.isLoggeddIn()==false){ 
+          this.router.navigate(['/login']);
+          console.log("error, no ha entrado al perifl de ysyari")
+        }
       })
       .catch(error =>  alert("No se ha podido hacer el log-in correctamente. Error: " + error))
   }
@@ -68,6 +74,23 @@ export class LoginComponent implements OnInit, OnDestroy {
       console.log("errorrrr")
     }
 
+  }
+
+  isLoggeddIn(){
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+   if(user)
+   {
+    this.isLoggedIn = true;
+    return true;
+   }
+
+   else {
+    return false;
+   }
+
+    
   }
 
 }

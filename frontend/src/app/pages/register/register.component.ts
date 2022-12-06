@@ -9,7 +9,7 @@ import { UsersService } from 'src/app/users.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss','./nicepage.css']
 })
 export class RegisterComponent implements OnInit {
 

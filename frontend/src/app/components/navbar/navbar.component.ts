@@ -11,7 +11,7 @@ import { UsersService } from 'src/app/users.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss','./nicepage.css']
 })
 export class NavbarComponent implements OnInit {
   public focus;

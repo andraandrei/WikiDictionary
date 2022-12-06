@@ -1,10 +1,10 @@
 
-<div class="main-content">
+<!-- <div class="main-content"> -->
   <!-- Top navbar -->
+  
   <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-4">
-      <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">
-        <!-- <img src="assets/img/brand/argon-white.png" /> -->
+      <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/dashboard']">    
       </a>
       <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
          aria-controls="sidenav-collapse-main">
@@ -15,8 +15,7 @@
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a routerLinkActive="active" [routerLink]="['/dashboard']">
-                <!-- <img src="assets/img/brand/blue.png"> -->
+              <a routerLinkActive="active" [routerLink]="['/dashboard']"> 
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -28,36 +27,55 @@
           </div>
         </div>
         <!-- Navbar items -->
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+        <ul class="navbar-nav ml-auto" *ngIf="!isLoggeddIn()$">
+          <li  class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
-              <i class="ni ni-planet"></i>
+              <i class="ni ni-planet" ></i>
               <span class="nav-link-inner--text">Home</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li   class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/register']">
-              <i class="ni ni-circle-08"></i>
-              <span class="nav-link-inner--text">Register</span>
+              <i class="ni ni-circle-08" ></i>
+              <span class="nav-link-inner--text" >Register</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li  class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/login']">
-              <i class="ni ni-key-25"></i>
+              <i class="ni ni-key-25" ></i>
               <span class="nav-link-inner--text">Login</span>
             </a>
           </li>
-          <li class="nav-item">
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="isLoggeddIn()$">
+          <li  class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
-              <i class="ni ni-key-25"></i>
-              <span class="nav-link-inner--text">Logout</span>
+              <i class="ni ni-planet" ></i>
+              <span class="nav-link-inner--text">Home</span>
             </a>
           </li>
-        </ul>           
+          <li  class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/user-profile']">
+              <i class="ni ni-circle-08" ></i>
+              <span class="nav-link-inner--text">Profile</span>
+            </a>
+          </li>      
+          <li  class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/maps']">
+              <i class="ni ni-email-83" ></i>
+              <span class="nav-link-inner--text">Add Word</span>
+            </a>
+          </li>
+          <li   class="nav-item">
+            <a class="nav-link nav-link-icon" >
+              <i class="ni ni-lock-circle-open" ></i>
+              <span (click)="logouut()" class="nav-link-inner--text">Logout</span>
+            </a>
+          </li>
+        </ul>            
       </div>
     </div>
   </nav>
-  <app-navbar></app-navbar>
   <!-- Pages -->
   <router-outlet></router-outlet>
   <!-- Footer -->
@@ -72,6 +90,6 @@
       </div>
     </div>
   </footer>  
-</div>
+<!-- </div> -->
 
 

@@ -1,0 +1,59 @@
+<html style="font-size: 16px;" lang="es">
+    <body class="u-body u-xl-mode" data-lang="es">
+        <section class="u-align-center u-clearfix u-image u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-section-1" id="carousel_7e78" data-image-width="1980" data-image-height="1114">            
+            <div class="u-clearfix u-valign-middle" style="padding-top:100px;padding-left: 100px;padding-right: 100px;padding-bottom: 100px; max-width: fit-content;" >
+                <div class="u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-gradient u-shape u-shape-rectangle u-shape-1"></div>
+                <!-- <img class="u-align-right u-image-round u-radius-20 u-image-1" data-image-width="50px" data-image-height="100px" src="5178414.jpg"> -->
+                <div class="u-container-style u-grey-5 u-group u-radius-20 u-shape-round u-group-1"  >
+                    <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xl u-container-layout-1" style="padding-right: 100px;">          
+                        <h3 class="mb-0">Create entry</h3>
+                        <div class="u-align-left u-text u-text-2"> </div>
+                        <form #wordForm="ngForm" (ngSubmit)="onWordCreate(wordForm.value)">
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-username">Word:</label>
+                                            <input type="text" name ="word" class="form-control form-control-alternative" placeholder="Word..." ngModel>                    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-first-name">Definition: </label>
+                                            <textarea placeholder="Enter your definition" rows="4" cols="100" id="message-f2a8" name="message" class="u-border-2 u-border-grey-75 u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle" required="" ngModel></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input class="u-border-none u-btn u-btn-round u-button-style u-palette-3-base u-radius-10 u-text-palette-1-base u-btn-2" type="submit" value ="Add words">
+                            </div>
+                        </form>
+                        <hr class="my-4" />
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div  *ngFor= 'let word of success' >
+                                            <div *ngIf="word.Success">
+                                                <p class="form-control-label">{{word.Success}}</p>
+                                            </div>
+                                        </div>
+                                        <div  *ngFor= 'let word of error1' >
+                                            <div *ngIf="getError()">  
+                                                <p class="form-control-label">Error: {{word.Error}}</p>
+                                            </div>                 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    
+                </div>               
+            </div>
+            <div class="u-gradient u-shape u-shape-circle u-shape-2"></div> 
+        </section>
+  </body>
+</html>
+
