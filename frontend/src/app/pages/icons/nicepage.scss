@@ -6,16 +6,9 @@
 /*end-commonstyles library*/@charset "UTF-8";
 
 .u-section-1 {
-  background-image: url("images/jh.jpg");
+  background-image: url("./images/jh.jpg");
   background-position: 50% 50%;
   min-height: 686px;
-}
-
-.u-prfile {
-  background-image: url("./images/kj.jpg");
-  
-  width:200;
-  height: 400px;
 }
 
 .u-section-1 .u-layout-wrap-1 {
@@ -74,7 +67,7 @@
 .u-section-1 .u-image-1 {
   min-height: 686px;
   pointer-events: auto;
-  background-image: url("images/5807340-min.png");
+  background-image: url("./images/5807340-min.png");
   background-position: 0% 50%;
 }
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth, getAuth, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from 'app/users.service';
+
 
 @Component({
   selector: 'app-admin-layout',
@@ -14,6 +15,7 @@ export class AdminLayoutComponent implements OnInit {
   test: Date = new Date();
   public isCollapsed = true;
   logged: boolean;
+  
   constructor(private router: Router, public userService: UsersService,private auth:Auth) { }
 
   ngOnInit() {
@@ -35,12 +37,16 @@ export class AdminLayoutComponent implements OnInit {
     body.classList.remove("bg-default");
   }
 
+  
   isLoggeddIn(){
     const auth = getAuth();
     const user = auth.currentUser;
+    
 
    if(user)
    {
+    console.log(user)
+    console.log(user.email)
     this.logged = true;
     return true;
    }
@@ -71,12 +77,34 @@ logout() {
   .catch(error =>  alert("Ha ocurrido un error. Error: " + error));
 }
 
-Logout() {
-  this.userService.logout();
+noAdmin(){
+  const auth = getAuth();
+    const user = auth.currentUser;
+    if(user){
+    // if (!user.email.match('admin@gmail.com')){
+      this.logged = true;
+      return true;
 }
 
-isLoggedIn() {
-  this.logged = this.userService.isLoggedIn();
+   else {
+    return false;
+   }
+
 }
 
+
+
+  isAdmin(){
+    
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if(user){
+      if(user.email.match('admin@gmail.com')){
+        return true;
+      }
+    }
+    else {
+      return false;
+    }
+  }
 }

@@ -27,7 +27,7 @@
           </div>
         </div>
         <!-- Navbar items -->
-        <ul class="navbar-nav ml-auto" *ngIf="!isLoggeddIn()$" ngAfterViewInit>
+        <ul class="navbar-nav ml-auto" *ngIf="!noAdmin()$ !isAdmin()$" ngAfterViewInit>
           <li  class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
               <i class="ni ni-planet" ></i>
@@ -47,7 +47,21 @@
             </a>
           </li>
         </ul>
-        <ul class="navbar-nav ml-auto" *ngIf="isLoggeddIn()$">
+        <ul class="navbar-nav ml-auto" *ngIf="isAdmin()$">
+          <li  class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/tables']">
+              <i class="ni ni-email-83" ></i>
+              <span class="nav-link-inner--text">Update Word</span>
+            </a>
+          </li>
+          <li  class="nav-item">
+            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/icons']">
+              <i class="ni ni-email-83" ></i>
+              <span class="nav-link-inner--text">Delete Word</span>
+            </a>
+          </li>                
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="noAdmin()$">
           <li  class="nav-item">
             <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
               <i class="ni ni-planet" ></i>
@@ -66,24 +80,12 @@
               <span class="nav-link-inner--text">Add Word</span>
             </a>
           </li>
-          <li  class="nav-item">
-            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/update']">
-              <i class="ni ni-email-83" ></i>
-              <span class="nav-link-inner--text">Update Word</span>
-            </a>
-          </li>
-          <li  class="nav-item">
-            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/icons']">
-              <i class="ni ni-email-83" ></i>
-              <span class="nav-link-inner--text">Delete Word</span>
-            </a>
-          </li>                
           <li   class="nav-item">
             <a class="nav-link nav-link-icon" >
               <i class="ni ni-lock-circle-open" ></i>
               <span (click)="logouut()" class="nav-link-inner--text">Logout</span>
             </a>
-          </li>
+          </li> 
         </ul>            
       </div>
     </div>

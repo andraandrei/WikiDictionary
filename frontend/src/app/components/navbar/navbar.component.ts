@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { getAuth } from "firebase/auth";
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from 'app/users.service';
 
 
 @Component({

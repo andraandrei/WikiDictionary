@@ -35,13 +35,13 @@
                 <div class="text-center text-muted mb-4">
                   <small>Or sign in with credentials</small>
                 </div>
-                <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" (ngSubmit)="onClick()">
+                <form [formGroup]="formLogin" >
                   <div class="form-group mb-3">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Email" type="email">
+                      <input type="text" class="form-control" formControlName="email" placeholder="Email">
                     </div>
                   </div>
                   <div class="form-group">
@@ -49,7 +49,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
-                      <input class="form-control" placeholder="Password" type="password">
+                      <input type="password" class="form-control" formControlName="password" placeholder="Password">
                     </div>
                   </div>
                   <div class="custom-control custom-control-alternative custom-checkbox">
@@ -59,7 +59,7 @@
                     </label>
                   </div>
                   <div class="text-center">
-                    <button type="button"  class="u-border-none u-btn u-btn-round u-button-style u-palette-3-base u-radius-10 u-text-palette-1-base u-btn-2" (click)="onSubmit()" (click)="onText()">Sign in</button>
+                    <button type="button"  class="u-border-none u-btn u-btn-round u-button-style u-palette-3-base u-radius-10 u-text-palette-1-base u-btn-2" (click)="onSubmit()">Sign in</button>
                   </div>
                 </form>
               </div>

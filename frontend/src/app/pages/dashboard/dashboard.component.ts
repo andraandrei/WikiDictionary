@@ -4,7 +4,7 @@ import { getAuth } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import Chart from 'chart.js';
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from 'app/users.service';
 
 // core components
 import {

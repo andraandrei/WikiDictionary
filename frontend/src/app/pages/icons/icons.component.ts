@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { getAuth } from '@angular/fire/auth';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from 'app/users.service';
 
 @Component({
   selector: 'app-icons',
@@ -39,15 +39,18 @@ export class IconsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const auth = getAuth();
-    const user = auth.currentUser;
-    if(this.isLoggeddIn()==true){
+    if(this.isAdmin()==true){
       this.router.navigate(['/icons']);
-    } 
-    else if (this.isLoggeddIn()==false){ 
+    } else {
+
+      if(this.isLoggeddIn()==true){
+        this.router.navigate(['/user-profile']);
+        console.log("error, no es admin");
+        alert("No tiene permisos de moderador");
+      } else if(this.isLoggeddIn()==false)
       this.router.navigate(['/login']);
-      console.log("error, no ha entrado al perifl de ysyari");
-      alert("No se ha podido hacer el log-in correctamente");
+      console.log("error, no es admin");
+      
     }
   }
   
@@ -95,28 +98,7 @@ export class IconsComponent implements OnInit {
     
     console.log(data);
 
-    // let body = "";
-    // body = "{ \"word\": \"" +data.pWord+"}";
-    // this.http.delete(this.url,this.httpOptions).subscribe((response: any) => {
-      
-      
-
-    //   if(response.Success != null)
-    //   {
-    //     console.log("Success")
-        
-    //    this.success = Array.of(response);
-    //    console.log(this.success)
-
-    //   } else {
-        
-
-    //     this.error1 = Array.of(response);
-    //     console.log(this.error1);
-        
-    //   }
-
-    //  });
+   
    
   }
 
@@ -180,7 +162,19 @@ export class IconsComponent implements OnInit {
 
 }
    
-  
+isAdmin(){
+    
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if(user){
+    if(user.email.match('admin@gmail.com')){
+      return true;
+    }
+  }
+  else {
+    return false;
+  }
+}
 
 @Input() word // Capitalize Input!
 

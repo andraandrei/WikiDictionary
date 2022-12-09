@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+// import { observable } from 'rxjs';
+import { of as observableOf } from 'rxjs';
 
 
 @Injectable({
@@ -10,6 +12,13 @@ export class UsersService {
   isLoggedin: boolean = false;
   usuario:string;
   constructor(private auth:Auth, private router: Router) { }
+
+  // uid = observableOf('123');
+  // isAdmin = observableOf(true);
+
+  ifAdmin(){
+  
+  }
 
   registro({email,password}: any){
 
@@ -23,17 +32,14 @@ export class UsersService {
     }
   }
 
-  error(){
-    
-  }
 
-isAdmin(){
-  
-}
+
+
 
   login( {email,password}: any ) {
 
     try{
+      console.log("userService.login funciona")
       return signInWithEmailAndPassword(this.auth, email, password);
   }
   catch(error) {
@@ -43,15 +49,7 @@ isAdmin(){
   }
 }     
 
-isLoggedIn() {
-  if (JSON.parse(localStorage.getItem('currentUser')).auth_token == null) {
-    this.isLoggedin = false;
-    return this.isLoggedin;
-  }
-  else {
-    return true;
-  }
-}
+
 
   loginWithGoogle() {
     return signInWithPopup(this.auth, new GoogleAuthProvider());
@@ -74,14 +72,15 @@ isLoggedIn() {
     
   }
 
-  // isLoggedIn() {
 
-  //   if (JSON.parse(localStorage.getItem('currentUser')).auth_token == null) {
-  //     this.isLoggedin = false;
-  //     return this.isLoggedin;
-  //   }
-  //   else {
-  //     return true;
-  //   }
-  // }
+  isAdmin(){
+    let admin = getAuth().currentUser.email
+
+    if(admin.match('admin@gmail.com')){
+      return true;
+    }
+     else {
+      return false;
+     }
+  }
 }

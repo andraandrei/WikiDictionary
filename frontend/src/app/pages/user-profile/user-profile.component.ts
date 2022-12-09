@@ -3,7 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { getAuth } from '@angular/fire/auth';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from 'app/users.service';
+
 
 @Component({
   selector: 'app-user-profile',

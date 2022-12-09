@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from 'app/users.service';
 
 @Component({
   selector: 'app-auth-layout',

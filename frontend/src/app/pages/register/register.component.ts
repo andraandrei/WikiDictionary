@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from 'app/users.service';
 
 
 
@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
     .then(response => {
       console.log(response);
       this.router.navigate(['/login']);
+      alert ("Registro correcto! Redirigido al LOG IN")
     })
     .catch(error =>  alert("No se ha podido hacer el registro correctamente. Error: " + error));
     

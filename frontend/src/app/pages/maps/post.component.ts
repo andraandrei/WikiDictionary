@@ -3,7 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Auth, getAuth, getIdToken } from '@angular/fire/auth';
 import { FormControl, FormGroup, FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/users.service';
+import { UsersService } from 'app/users.service';
 declare const google: any;
 
 @Component({
