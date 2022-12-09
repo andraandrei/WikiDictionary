@@ -87,7 +87,7 @@ public class DictionaryController
 				{
 					//comprobar si es igual que la palabra de dentro del diccionario
 					String localWord = document.getString("word");
-					if (word.toLowerCase().equals(localWord.toLowerCase())) 
+					if (word.toLowerCase().equals(localWord)) 
 					{
 						ArrayList<String> localDefinitions = (ArrayList<String>)document.get("definitions");
 						obj.setWord(localWord);
@@ -196,7 +196,7 @@ public class DictionaryController
 			for (QueryDocumentSnapshot document : documents) 
 			{
 				String localWord = document.getString("word");
-				if ((wordIf.toLowerCase().equals(localWord.toLowerCase())))
+				if ((wordIf.toLowerCase().equals(localWord)))
 				{
 					ApiFuture<WriteResult> writeResult = db.collection("dictionary").document(wordIf).delete();
 					System.out.println("Update time : " + writeResult.get().getUpdateTime());
@@ -234,7 +234,7 @@ public class DictionaryController
 		} 
 			Firestore db = FirestoreClient.getFirestore();
 
-		if( wordIf.isBlank()  ||  definitionIf.isBlank() || Pattern.matches("[a-zA-Z]+", wordIf) == false || Pattern.matches("[a-zA-Z]+", definitionIf) == false)
+		if( wordIf.isBlank() || definitionIf.isBlank() || Pattern.matches("[a-zA-Z]+", wordIf) == false || Pattern.matches("[a-zA-Z ]+", definitionIf) == false)
 		{
 			System.out.println("WORD ESTA VACIO");
 			JSONObject errorMessage = new JSONObject();
@@ -249,7 +249,7 @@ public class DictionaryController
 			for (QueryDocumentSnapshot document : documents) 
 			{
 				String localWord = document.getString("word");
-				if ((wordIf.toLowerCase()).equals(localWord.toLowerCase())) 
+				if ((wordIf.toLowerCase()).equals(localWord)) 
 				{
 					JSONObject jSONObject = new JSONObject();
 					jSONObject.append("Error", "Word already exists");
@@ -313,7 +313,7 @@ public class DictionaryController
 		} 
 		Firestore db = FirestoreClient.getFirestore();
 
-		if( wordIf.isBlank()  ||  definitionIf.isBlank() || Pattern.matches("[a-zA-Z]+", wordIf) == false || Pattern.matches("[a-zA-Z]+", definitionIf) == false)
+		if( wordIf.isBlank()  || definitionIf.isBlank()|| Pattern.matches("[a-zA-Z]+", wordIf) == false || Pattern.matches("[a-zA-Z ]+", definitionIf) == false)
 		{
 			System.out.println("WORD ESTA VACIO");
 			JSONObject errorMessage = new JSONObject();
@@ -328,7 +328,7 @@ public class DictionaryController
 			for (QueryDocumentSnapshot document : documents) 
 			{
 				String localWord = document.getString("word");
-				if (wordIf.toLowerCase().equals(localWord.toLowerCase())) 
+				if (wordIf.toLowerCase().equals(localWord)) 
 				{          
 					try 
 					{	
