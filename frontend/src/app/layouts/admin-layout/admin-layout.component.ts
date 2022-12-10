@@ -7,7 +7,7 @@ import { UsersService } from 'app/users.service';
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.scss','./nicepage.css']
+  styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
 
@@ -67,15 +67,6 @@ export class AdminLayoutComponent implements OnInit {
 
 }
 
-logout() {
-
-  return signOut(this.auth)
-  .then(response => {
-    console.log(response);
-    this.router.navigate(['/dashboard']);
-  })
-  .catch(error =>  alert("Ha ocurrido un error. Error: " + error));
-}
 
 noAdmin(){
   const auth = getAuth();

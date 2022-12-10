@@ -8,7 +8,7 @@ import { UsersService } from 'app/users.service';
 @Component({
   selector: 'app-update',
   templateUrl: './tables.component.html',
-  styleUrls: ['./tables.component.scss','./nicepage.css']
+  styleUrls: ['./tables.component.scss']
 })
 export class TablesComponent implements OnInit {
 
@@ -75,6 +75,7 @@ export class TablesComponent implements OnInit {
       }
      });
   }
+
   getError():boolean 
   {
     if(this.error1 !== undefined)
@@ -86,6 +87,7 @@ export class TablesComponent implements OnInit {
       return false;
     }
   }
+
   onClick() 
   {
     this.userService.logout().then(() => 
@@ -111,13 +113,6 @@ export class TablesComponent implements OnInit {
    }
   }
   
-  returnUser()
-  {
-    const auth = getAuth();
-    const user = auth.currentUser;
-    user.getIdToken
-    console.log(user)
-  }
 
 isAdmin()
 {  

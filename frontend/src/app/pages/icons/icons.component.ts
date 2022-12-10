@@ -9,11 +9,9 @@ import { UsersService } from 'app/users.service';
 @Component({
   selector: 'app-icons',
   templateUrl: './icons.component.html',
-  styleUrls: ['./icons.component.scss','./nicepage.css']
+  styleUrls: ['./icons.component.scss']
 })
 export class IconsComponent implements OnInit {
-
-
   isLoggedIn : boolean;
   obj: object;
   wordData: any = [];
@@ -23,34 +21,32 @@ export class IconsComponent implements OnInit {
   error1: any
   url: string = "http://localhost:8017/deleteWord";
   
-  
-  
-  constructor(
-    private userService: UsersService,
-    private router: Router,private http: HttpClient
-    ) {
-      this.formReg = new FormGroup({
-        email: new FormControl(),
-        password: new FormControl()
-
-        
-      })
+  constructor(private userService: UsersService,private router: Router,private http: HttpClient) 
+  {
+    this.formReg = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()  
+    })
    }
 
   ngOnInit(): void {
-
-    if(this.isAdmin()==true){
+    if(this.isAdmin()==true)
+    {
       this.router.navigate(['/icons']);
-    } else {
-
-      if(this.isLoggeddIn()==true){
+    } 
+    else 
+    {
+      if(this.isLoggeddIn()==true)
+      {
         this.router.navigate(['/user-profile']);
         console.log("error, no es admin");
         alert("No tiene permisos de moderador");
-      } else if(this.isLoggeddIn()==false)
-      this.router.navigate(['/login']);
-      console.log("error, no es admin");
-      
+      } 
+      else if(this.isLoggeddIn()==false)
+      {
+        this.router.navigate(['/login']);
+        console.log("error, no es admin");
+      }
     }
   }
   
@@ -61,117 +57,86 @@ export class IconsComponent implements OnInit {
     }),
   };
   
-  
-
-  onWordDelete(data){
-    
-    let options = {
-      headers: new HttpHeaders({
+  onWordDelete(data)
+  { 
+    let options = 
+    {
+      headers: new HttpHeaders(
+      {
         'Content-Type': 'application/json',
       }),
-      body: {
+      body: 
+      {
         "word": data.pWord
-
       },
     };
-    
-    this.http.delete(this.url, options)
-      .subscribe((response) => {
-        console.log(response);
-        if(response != null)
+    this.http.delete(this.url, options).subscribe((response) => 
+    {
+      console.log(response);
+      if(response != null)
       {
         console.log("Success")
-        
-       this.success = Array.of(response);
-       console.log(this.success)
-
-      } else {
-        
-
+        this.success = Array.of(response);
+        console.log(this.success)
+      } 
+      else 
+      {
         this.error1 = Array.of(response);
         console.log(this.error1);
-        
       }
-
-     });
-      
-    
+    }); 
     console.log(data);
-
-   
-   
   }
 
-  getError():boolean {
-    
-    if(this.error1 !== undefined){
+  getError():boolean 
+  {  
+    if(this.error1 !== undefined)
+    {
       return true;
-    }
-      
-    else {
+    }  
+    else 
+    {
       return false;
     }
   }
-  onClick() {
-    this.userService.logout()
-      .then(() => {
-        this.router.navigate(['/dashboard']);
-      })
-      .catch(error => console.log(error));
+
+  onClick() 
+  {
+    this.userService.logout().then(() => 
+    {
+      this.router.navigate(['/dashboard']);
+    }).catch(error => console.log(error));
   }
 
-  onText(){
-
+  isLoggeddIn()
+  {
     const auth = getAuth();
     const user = auth.currentUser;
-
-    if (user) {
-      console.log(user)
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      // ...
-    } else {
-      error =>  alert("Ha ocurrido un error. Error: " + error);
-      console.log("errorrrr")
+    console.log(user)
+    if(user)
+    {
+      this.isLoggedIn = true;
+      return true;
     }
-
+    else 
+    {
+      return false;
+    }
   }
-
-  isLoggeddIn(){
-    const auth = getAuth();
-    const user = auth.currentUser;
-    console.log(user)
-
-   if(user)
-   {
-    this.isLoggedIn = true;
-    return true;
-   }
-
-   else {
-    return false;
-   }
-
-  }
-  
-  returnUser(){
-    const auth = getAuth();
-    const user = auth.currentUser;
-    user.getIdToken
-    console.log(user)
-
-}
-   
-isAdmin(){
     
+isAdmin()
+{   
   const auth = getAuth();
   const user = auth.currentUser;
-  if(user){
-    if(user.email.match('admin@gmail.com')){
+  if(user)
+  {
+    if(user.email.match('admin@gmail.com'))
+    {
       return true;
     }
   }
-  else {
+  else 
+  {
     return false;
   }
 }

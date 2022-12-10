@@ -6,9 +6,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse"  [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
-      
-      
-        <!-- Collapse header -->
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
@@ -23,95 +20,11 @@
             </div>
           </div>
         </div>
-        <!-- Navbar items -->
-        <!-- <ul class="navbar-nav ml-auto">
-          
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashbar']">
-              <i class="ni ni-planet" style="color:black"></i>
-              <span class="nav-link-inner--text" style="color:black">Home</span>
-            </a>
-          </li>
-          <li *ngIf="isLoggedIn()$" class="nav-item" >
-            <a class="nav-link nav-link-icon" style="color:black" routerLinkActive="active" [routerLink]="['/register']">
-              <i class="ni ni-circle-08" style="color:black"></i>
-              <span class="nav-link-inner--text" style="color:black">Register</span>
-            </a>
-          </li>
-          <li *ngIf="isLoggedIn()$ " class="nav-item" >
-            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/login']">
-              <i class="ni ni-key-25" style="color:black"></i>
-              <span class="nav-link-inner--text" style="color:black">Login</span>
-            </a>
-          </li>
-          <li *ngIf="isLoggedIn()$ " class="nav-item" >
-            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
-              <i class="ni ni-key-25" style="color:black"></i>
-              <span class="nav-link-inner--text" style="color:black">Logout</span>
-            </a>
-          </li>
-          
-         
-          <li *ngIf="isLoggedIn()$" class="nav-item" >
-            <a class="nav-link nav-link-icon" routerLinkActive="active" [routerLink]="['/dashboard']">
-              <i class="ni ni-key-25"style="color:black"></i>
-              <span class="nav-link-inner--text" style="color:black">Logout</span>
-            </a>
-          </li>
-          
-        </ul> -->
       </div>
     </div>
   </nav>
 </div>
-<html style="font-size: 16px;" lang="es">
-  <body data-home-page="Casa.html" data-home-page-title="Casa" class="u-body u-xl-mode" data-lang="es">
-    <section class="u-align-center u-clearfix u-image u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-section-1" id="carousel_7e78" data-image-width="1980" data-image-height="1114">
-      <div class="u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
-        <div class="u-layout" style="">
-          <div class="u-layout-row" style="">
-            <div class="u-align-left u-container-style u-layout-cell u-left-cell u-shape-rectangle u-size-20-lg u-size-20-xl u-size-23-md u-size-23-sm u-size-23-xs u-size-xs-60 u-layout-cell-1" src="">
-              <div class="u-container-layout u-valign-middle u-container-layout-1">
-                <h1 class="u-text u-text-body-alt-color u-text-1" data-animation-name="fadeIn" data-animation-duration="1000" data-animation-direction="Left" data-animation-delay="250"> Wiki Dictionary</h1>
-                <form  class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-block-control u-block-4c09-20" style="height: auto; width: 350px; min-height: 45px; margin-top: 57px; margin-right: 7px; margin-bottom: 0; margin-left: 0" data-block="15" data-block-type="Search">
-                  <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }"></div>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-search"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Search" type="text"  [(ngModel)]="word" (focus)="focus = true" (blur)="focus = false" >      
-                  </div>
-                </form>
-                <p>
-                  <button  type="submit" (click) ="inputValue(word)" class="u-border-none u-btn u-btn-round u-button-style u-palette-3-base u-radius-10 u-text-palette-1-base u-block-control u-block-4c09-14" data-animation-name="fadeIn" data-animation-duration="1000" data-animation-direction="Up" data-animation-delay="500" style="background-image: none; border-style: none; font-size: 1rem; letter-spacing: 2px; font-weight: 700; text-transform: uppercase; margin-top: 10px; margin-right: auto; margin-bottom: 0; margin-left: 0; padding-top: 9px; padding-left: 43px; padding-right: 43px; padding-bottom: 10px" data-block="19" data-block-type="Button">SEARCH<span style="font-size: 0.75rem;">​​</span>
-                  </button>
-                </p>     
-              </div>            
-            </div>           
-            <div class="u-align-center u-container-style u-image u-layout-cell u-right-cell u-size-37-md u-size-37-sm u-size-37-xs u-size-40-lg u-size-40-xl u-size-xs-60 u-image-1" data-image-width="1422" data-image-height="900">
-              <div class="u-container-layout u-block-4c09-5" src="" style="padding-top: 210px; padding-left: 100px; padding-right: 100px; padding-bottom: 30px">  
-                <div  *ngFor= 'let word of wordData' >
-                  <div *ngIf="!getError()"> 
-                      <p  style="color: black;font-family: Georgia, 'Times New Roman', Times, serif;"><b><i>Word:</i></b> {{word.word}}</p>
-                      <hr class="my-4" />
-                      <p  style="color: black;font-family: Georgia, 'Times New Roman', Times, serif;"><b><i>Definition:</i></b> {{word.definition}}</p>
-                  </div>
-                  <div *ngIf="getError()"> 
-                      <!-- <hr class="my-4" />      -->
-                      <p  style="color: black;font-family: Georgia, 'Times New Roman', Times, serif;"><b><i>Error:</i></b> {{word.error}}</p>
-                  </div>
-                </div>
-              </div>
-              
-            </div>     
-          </div>        
-        </div>      
-      </div>
-    </section>
-  </body>
-</html>
+
 
 
 

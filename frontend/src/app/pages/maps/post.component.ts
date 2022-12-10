@@ -9,10 +9,9 @@ declare const google: any;
 @Component({
   selector: 'app-maps',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss','./nicepage.css']
+  styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-
 
   isLoggedIn : boolean;
   obj: object;
@@ -24,28 +23,28 @@ export class PostComponent implements OnInit {
   url: string = "http://localhost:8017/setWord";
   @ViewChild('wordForm') form:NgForm;
   
-  constructor(
-    private userService: UsersService,
-    private router: Router,private http: HttpClient
-    ) {
-      this.formReg = new FormGroup({
-        email: new FormControl(),
-        password: new FormControl()
-      })
+  constructor(private userService: UsersService,private router: Router,private http: HttpClient) 
+  {
+    this.formReg = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()
+    })
    }
 
   ngOnInit(): void {
-
     this.noLogueado()
   }
 
-  noLogueado(){
+  noLogueado()
+  {
     const auth = getAuth();
     const user = auth.currentUser;
-    if(this.isLoggeddIn()==true){
+    if(this.isLoggeddIn()==true)
+    {
       this.router.navigate(['/maps']);
     } 
-    else if (this.isLoggeddIn()==false){ 
+    else if (this.isLoggeddIn()==false)
+    { 
       this.router.navigate(['/login']);
       console.log("error, no ha entrado al perifl ");
       alert("No se ha podido hacer el log-in correctamente");
@@ -59,102 +58,63 @@ export class PostComponent implements OnInit {
     }),
   };
 
-    formEdit(){
-      this.form.setValue({
-        pWord:'',
-        pDefinition:''
-      });
-    }
   onWordCreate(data){
-
-
     console.log(data)
-
-
     let body = "";
     body = "{ \"word\": \""+data.pWord+"\",\"definitions\": [\""+data.pDefinition+"\"]}";
-    this.http.post(this.url,body,this.httpOptions).subscribe((response: any) => {
-
+    this.http.post(this.url,body,this.httpOptions).subscribe((response: any) => 
+    {
       console.log(body)
       console.log(response)
       if(response.Success != null)
       {
         console.log("Success")
-        
-       this.success = Array.of(response);
-       console.log(this.success)
-
-      } else {
-        
-
+        this.success = Array.of(response);
+        console.log(this.success)
+      } 
+      else 
+      {
         this.error1 = Array.of(response);
-        console.log(this.error1);
-        
+        console.log(this.error1); 
       }
-
-     });
-   
+     }); 
   }
 
-  getError():boolean {
-    
-    if(this.error1 !== undefined){
+  getError():boolean 
+  {  
+    if(this.error1 !== undefined)
+    {
       return true;
-    }
-      
-    else {
+    }  
+    else 
+    {
       return false;
     }
   }
-  onClick() {
-    this.userService.logout()
-      .then(() => {
+
+  onClick() 
+  {
+    this.userService.logout().then(() => 
+    {
         this.router.navigate(['/dashboard']);
-      })
-      .catch(error => console.log(error));
-  }
-
-  onText(){
-
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (user) {
-      console.log(user)
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      // ...
-    } else {
-      error =>  alert("Ha ocurrido un error. Error: " + error);
-      console.log("errorrrr")
-    }
-
+    })
+    .catch(error => console.log(error));
   }
 
   isLoggeddIn(){
     const auth = getAuth();
     const user = auth.currentUser;
     console.log(user)
-
    if(user)
    {
     this.isLoggedIn = true;
     return true;
    }
-
-   else {
+   else 
+   {
     return false;
    }
-
   }
-  
-  returnUser(){
-    const auth = getAuth();
-    const user = auth.currentUser;
-    user.getIdToken
-    console.log(user)
-
-}
    
   @Input() word // Capitalize Input!
   
