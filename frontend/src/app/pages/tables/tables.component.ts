@@ -19,7 +19,7 @@ export class TablesComponent implements OnInit {
   formReg: FormGroup;
   siError:boolean=false;
   error1: any
-  url: string = "http://localhost:8017/updateWord";
+  url: string = "http://52.47.141.244:8017/updateWord";
   constructor(private userService: UsersService,private router: Router,private http: HttpClient) 
   {
     this.formReg = new FormGroup({

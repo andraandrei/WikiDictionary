@@ -20,7 +20,7 @@ export class PostComponent implements OnInit {
   formReg: FormGroup;
   siError:boolean=false;
   error1: any
-  url: string = "http://localhost:8017/setWord";
+  url: string = "http://52.47.141.244:8017/setWord";
   @ViewChild('wordForm') form:NgForm;
   
   constructor(private userService: UsersService,private router: Router,private http: HttpClient) 

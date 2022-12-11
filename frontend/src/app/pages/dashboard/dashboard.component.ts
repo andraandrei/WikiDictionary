@@ -77,7 +77,9 @@ export class DashboardComponent implements OnInit {
   formReg: FormsModule;
 
   inputValue(value){
-    this.url = 'http://127.0.0.1:8017/getWord?word='+value;
+    // const backend=process.env.API_HOST;
+    // this.url = backend+value;
+    this.url = 'http://52.47.141.244:8017/getWord?word='+value;
 
     const httpOptions = {
  	 	  headers: new HttpHeaders()
