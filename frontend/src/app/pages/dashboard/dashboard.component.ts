@@ -77,9 +77,7 @@ export class DashboardComponent implements OnInit {
   formReg: FormsModule;
 
   inputValue(value){
-    // const backend=process.env.API_HOST;
-    // this.url = backend+value;
-    this.url = 'http://52.47.141.244:8017/getWord?word='+value;
+    this.url = 'http://localhost:8017/getWord?word='+String(value).split("%").join(" ");
 
     const httpOptions = {
  	 	  headers: new HttpHeaders()
@@ -90,26 +88,25 @@ export class DashboardComponent implements OnInit {
     httpOptions.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     
     this.http.get<any>(this.url).subscribe(data => {
-        this.error1=data.error;
-        this.getError();
-        this.wordData = Array.of(data);
-        console.log(this.wordData)
- 
-    }) ;
+      this.error1=data.Error;
+      this.getError();
+      this.wordData = Array.of(data);
+      console.log(this.wordData)
+
+  }) ;
 
 
-  }
+}
 
 
-  getError():boolean {
-
-   
-    
-    if(this.error1 !== undefined){
+  getError():boolean 
+  {  
+    if(this.error1 !== undefined)
+    {
       return true;
-    }
-      
-    else {
+    }  
+    else 
+    {
       return false;
     }
   }

@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach } from 'node:test';
 
 import { PostComponent } from './post.component';
 
