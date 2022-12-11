@@ -70,7 +70,7 @@ public class DictionaryController
 		} 
 			Firestore db = FirestoreClient.getFirestore();
 			//comprobar que los espacios del buscador no estan en blanco o contienen numeros
-			if( word.isBlank()  ||  Pattern.matches("[a-zA-Z]+", word) == false)
+			if( word.isBlank()  ||  Pattern.matches("[a-zA-Z]+", word) == false )
 			{
 				System.out.println("WORD ESTA VACIO");
 				JSONObject errorMessage = new JSONObject();
@@ -151,10 +151,13 @@ public class DictionaryController
 					} 
 				} catch (FileNotFoundException fe) 
 				{
-					String message = "This is non existing word. Try again";
-					JSONObject err = new JSONObject();
-					err.put("error", message);
-					return err.toString();
+					JSONObject errorMessage = new JSONObject();
+					errorMessage.append("Error", "this is no existing word.Try again");
+					return errorMessage.toString();
+					// String message = "This is non existing word. Try again";
+					// JSONObject err = new JSONObject();
+					// err.put("error", message);
+					// return err.toString();
 				}
 			} 
 			return word;
